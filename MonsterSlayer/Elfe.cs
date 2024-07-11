@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using MonsterSlayer;
 
+//Surcharge
+
 namespace MonsterSlayer
 {
     internal class Elfe : Guerrier
@@ -18,7 +20,7 @@ namespace MonsterSlayer
             NbrePointsAttaque = PointsAttaque;
         }
 
-        public override void CalculAttaque(Guerrier ennemi, out int attaqueJoueur, out int attaqueEnnemi)
+        public void CalculAttaque(Guerrier ennemi, out int attaqueJoueur, out int attaqueEnnemi)
         {
             Random desAttaque = new Random();
             attaqueJoueur = desAttaque.Next(1, 7) * NbDesAttaque + NbrePointsAttaque;
