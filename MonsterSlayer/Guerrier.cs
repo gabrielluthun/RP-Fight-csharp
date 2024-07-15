@@ -40,15 +40,15 @@ public class Guerrier
 
         //Si le dé affiche moins de 5 ET si on est pas un elfe, on peut rater des attaques
 
-        if (jetPourToucherJoueur < 5 && Joueur is Nain)
+        if (jetPourToucherEnnemi < 5)
         {
             attaqueJoueur = 0;
-            Console.WriteLine($"\nL'Attaque de {Joueur.Nom} n'a pas touché car le dé indique " + jetPourToucherJoueur + " ! Dégâts infligés : " + attaqueJoueur + " !");
+            Console.WriteLine($"\nL'Attaque de {Joueur.Nom} n'a pas touché car le dé indique " + jetPourToucherEnnemi + " ! Dégâts infligés : " + attaqueJoueur + " !");
         }
-        else if (jetPourToucherEnnemi < 5 && Joueur is Nain )
+        else if (jetPourToucherJoueur < 5)
         {
             attaqueEnnemi = 0;
-            Console.WriteLine($"\nL'Attaque de {Ennemi.Nom} n'a pas touché car le dé indique " + jetPourToucherEnnemi + "! Dégâts infligés : " + attaqueEnnemi + " !");
+            Console.WriteLine($"\nL'Attaque de {Ennemi.Nom} n'a pas touché car le dé indique " + jetPourToucherJoueur + "! Dégâts infligés : " + attaqueEnnemi + " !");
         } 
         else if (jetPourToucherJoueur < 5 && jetPourToucherEnnemi < 5)
         {
@@ -76,19 +76,7 @@ public class Guerrier
         Thread.Sleep(1000);
     }
 
-    public static void GameOver(Guerrier Joueur, Guerrier Ennemi)
-    {
-        if (Joueur.PV <= 0)
-        {
-            Joueur.PV = 0;
-            Console.WriteLine("\nDéfaite...");
-        }
-        else if (Ennemi.PV <= 0)
-        {
-            Ennemi.PV = 0;
-            Console.WriteLine("\nVictoire !");
-        }
-    }
+    
 
     public static bool Fuite(Guerrier Joueur)
     {
@@ -119,6 +107,7 @@ public class Guerrier
         else if (scoreDe > 10)
         {
             Console.WriteLine("Vous avez fui !");
+            Thread.Sleep(750);
             return true;
         }
 
@@ -126,7 +115,18 @@ public class Guerrier
         return false;
     }
 
+    public static void GameOver(Guerrier Joueur, Guerrier Ennemi)
+    {
+        if (Joueur.PV <= 0)
+        {
+            Joueur.PV = 0;
+            Console.WriteLine("\nDéfaite...");
+        }
+        else if (Ennemi.PV <= 0)
+        {
+            Ennemi.PV = 0;
+            Console.WriteLine("\nVictoire !");
+        }
+    }
 
 }
-
-
