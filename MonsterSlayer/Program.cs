@@ -5,9 +5,9 @@ using MonsterSlayer;
 static void Game()
 {
     Guerrier Joueur;
-    Guerrier Ennemi = new Guerrier("Vergil", 100, 10);
-    Elfe ElfeEnnemi = new Elfe("Gimli", 150, 2, 10);
-    Nain NainEnnemi = new Nain("Legolas", 175, 2, 15);
+    Guerrier Ennemi = new Guerrier("Vergil", 100, 1);
+    Elfe ElfeEnnemi = new Elfe("Gimli", 150, 1, 1);
+    Nain NainEnnemi = new Nain("Legolas", 175, 1, 1);
 
     Console.WriteLine("--------------- Bienvenue dans Monster Slayer ! ---------------");
     Console.WriteLine("Choisissez votre type de personnage :");
@@ -23,7 +23,7 @@ static void Game()
     switch (choix)
     {
         case "1":
-            Joueur = new Nain("Dante", 100, 2, 1);
+            Joueur = new Nain("Dante", 45, 2, 1);
             Ennemi = NainEnnemi;
             Console.WriteLine("Vous avez choisi : Nain");
             break;
@@ -55,7 +55,6 @@ static void Game()
         Guerrier.CalculAttaque(Joueur, Ennemi, out attaqueJoueur, out attaqueEnnemi);
         GestionPV(Joueur, Ennemi, attaqueJoueur, attaqueEnnemi);
         Guerrier.AfficherEtat(Joueur, Ennemi);
-        Guerrier.GameOver(Joueur, Ennemi);
 
         if (Joueur.PV > 0 && Ennemi.PV > 0)
         {
@@ -75,7 +74,7 @@ static void Game()
                     UtiliserPotion(Joueur);
                     break;
                 case "3":
-                    if (Guerrier.Fuite(Joueur)) return; 
+                    if (Guerrier.Fuite(Joueur)) return;
                     break;
                 default:
                     Console.WriteLine("Choix invalide. Vous continuez à combattre !");
@@ -131,4 +130,23 @@ static void AidePourJouer()
     Game();
 }
 
+
+static void RestartGame()
+{
+    Console.WriteLine("Voulez-vous rejouer ? (O/N)");
+    string choix = Console.ReadLine()!;
+
+    if (choix.ToUpper() == "O")
+    {
+        Console.Clear();
+        Game();
+    }
+    else
+    {
+        Console.Clear();
+        Console.WriteLine("Merci d'avoir joué à Monster Slayer !");
+    }
+}
+
 Game();
+RestartGame();
